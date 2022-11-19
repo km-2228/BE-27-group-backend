@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index_register.css">
+    <title>project</title>
+</head>
+<body>
+    <img src="ayf.png" alt="aseanyouthforum">
+        <div class="container">
+            <!-- <form method="POST" action="/regis"> -->
+            <p id="judul">Membuat Akun</p>
+            Nama :
+            <input type="text" name="nama" id="nama" /><br><br>
+            Username :
+            <input type="text" name="username" id="username" /><br><br>
+            Password :
+            <input type="password" name="password" id="password" />
+        <button type="submit" id="submit2">Buat Akun</button>
+        <!-- </form> -->
+        <p id="hasil" style="text-align: center;"></p>
+<p style="text-align: center;"><a id="rg" href="/login">Sudah punya akun ?</a></p>
+</body>
+<!-- <script src="register.js"></script> -->
+<script>
+    username = document.getElementById("username")
+    nama = document.getElementById("nama")
+    password = document.getElementById("password")
+
+    document.getElementById("submit2").addEventListener('click',()=>{
+        var data = {"username":username.value,"password":password.value,"nama":nama.value}
+        console.log(data);
+        fetch("/regis", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data)
+      }).then((data) => {
+        const status = document.getElementById("hasil")
+        status.innerHTML = "Berhasil Mendaftar"
+        console.log(data)
+        window.location.href = "/login"
+    })
+    })
+
+</script>
+</html>

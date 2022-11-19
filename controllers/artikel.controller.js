@@ -1,6 +1,13 @@
 const atk = require("../models/artikel")
 
+const db = require("../config/koneksi");
+
 module.exports = {
+    homeAdmin(req,res){
+        res.render("artikel",{
+            url : db
+        });
+    },
     getAllArtikel: async (req, res) => {
         try {
             const artikels = await atk.find()
@@ -33,7 +40,7 @@ module.exports = {
     deleteArtikelByID: async (req, res) => {
         const id  = req.params.id
         try {
-            const hapus = await mtr.findByIdAndDelete(id)
+            const hapus = await atk.findByIdAndDelete(id)
             if(!hapus) return res.status(404).json({message: "Data tidak ada"})
             return res.json({message: "Data berhasil dihapus"})
         } catch (error) {
@@ -45,8 +52,7 @@ module.exports = {
         try {
             const id = req.params.id
             const data = req.body
-
-            const perbarui =  await mtr.findByIdAndUpdate(id, data, { new: true})
+            const perbarui =  await atk.findByIdAndUpdate(id, data, { new: true})
             if(!perbarui) return res.status(404).json({message: "Data tidak ada"})
             return res.json({
                 message: "Data berhasil di update",

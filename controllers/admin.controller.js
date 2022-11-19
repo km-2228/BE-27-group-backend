@@ -1,19 +1,19 @@
-const usr = require("../models/user")
-const bcrypt = require("bcrypt")
+const usr = require("../models/admin")
 const jwt = require("jsonwebtoken");
 const db = require("../config/koneksi");
 
 module.exports = {
     halaman(req,res){
-        res.render("index",{
+        res.render("admin",{
             url : db
         });
     },
     login: async (req,res) => {
+        console.log(req.body);
         try {
             const data = req.body
-
-            const user = await usr.findOne({ username: data.username})
+            
+            const user = await usr.findOne({ username: data.username, password: data.password})
             
             // if(!user)res.status(400).send("Akun tidak ditemukan")
             if(!user){
@@ -23,10 +23,7 @@ module.exports = {
                 })
             }
 
-            const checkPs = bcrypt.compareSync(data.password, user.password)
-            console.log(checkPs)
-
-            if (checkPs) {
+            if (user) {
                 const token = jwt.sign({username: user.username},
                     process.env.TOKEN_KEY, {expiresIn: "1h"})
 
@@ -36,11 +33,12 @@ module.exports = {
                     secure: process.env.NODE_ENV === "production",
                   })
                   
-                // res.redirect("/utama")
+                console.log(res.cookie);
                 return res.json({
                     status:200,
                     message: "Login Berhasil",
                 })
+                // res.redirect("/admin")
                 return res
             } else {
                 return res.json({

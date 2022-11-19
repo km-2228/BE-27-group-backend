@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="utama.css">
+    <title>utama</title>
+</head>
+<body>
+    <header>
+        <a href="/admin"><img src="ayf.png" height=100px></a>
+        <button id="keluar"><a href="/login">Keluar</a></button>
+    </header>
+    <main id="main"></main>
+</body>
+<script>
+    async function getForum(url) {
+    let res = await fetch(url)
+
+    let data = await res.json()
+    data = data.data
+    showForum(data)
+}
+    var url ="/artikel";
+    function showForum(forum2) {
+    
+    let main = document.getElementById("main")
+    main.innerHTML = ''
+
+    forum2.forEach((forum) => {
+        let { _id,judul, isi } = forum
+
+        let forumAdd = document.createElement("div")
+        forumAdd.classList.add('ar')
+
+        forumAdd.innerHTML = `
+        <p id="akun-${_id}"></p>
+        <h2 id="judul-${_id}">${judul}</h2>
+        <p id="isi-${_id}" style="text-align: justify;" id="status">${isi}</p>
+        <button onclick=hapusData('${_id}')>Delete</button>
+        <button id='edit-${_id}' onclick=editData('${_id}')>Edit</button>
+        <button style="display:none" id='saveEdit-${_id}' onclick=saveEdit('${_id}')>Save Edit</button>
+       </div>`
+        main.appendChild(forumAdd)
+    })
+}
+
+function editData(id) {
+    document.getElementById('judul-'+id).setAttribute('contenteditable',true)
+    document.getElementById('isi-'+id).setAttribute('contenteditable',true)
+    document.getElementById('edit-'+id).setAttribute('style','display:none;')
+    document.getElementById('saveEdit-'+id).removeAttribute('style')
+}
+
+function saveEdit(id) {
+    var judul = document.getElementById('judul-'+id).innerText
+    var isi = document.getElementById('isi-'+id).innerText
+    var data = {"judul":judul,"isi":isi}
+
+    fetch("/admin/data/"+id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      }).then((d) => {
+        console.log(d)
+    }).then(r=>window.location.href= window.location.href)
+}
+function hapusData(id){
+    fetch("/admin/data/"+id, {
+  method: 'DELETE',
+})
+.then(res => res.text()) // or res.json()
+.then(res => window.location.href = window.location.href)
+
+    }
+getForum(url)
+</script>
+<!-- <script src="utama.js"></script> -->
+</html>

@@ -6,6 +6,7 @@ const {
     getArtikelByID
 } = require("../controllers/utama.controller")
 
+// router.get("/", halaman)
 router.get("/", getAllArtikel)
 router.get("/:id", getArtikelByID)
 

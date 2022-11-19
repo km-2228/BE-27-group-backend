@@ -4,7 +4,7 @@ const router = express.Router()
 const {
     halaman,
     login
-} = require("../controllers/login.controller")
+} = require("../controllers/admin.controller")
 
 router.get("/", halaman)
 router.post("/", login)

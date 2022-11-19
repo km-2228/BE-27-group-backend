@@ -1,15 +1,28 @@
 const atk = require("../models/artikel")
+const db = require("../config/koneksi")
 
 module.exports = {
+    halaman(req,res){
+        res.render("utama",{
+            url : db
+        })
+    },
+
     getAllArtikel: async (req, res) => {
         try {
             const artikels = await atk.find()
-            res.json({
-                data: artikels
-            })
+            // res.json({
+            //     data: artikels
+            // })
+
+            // console.log(artikels);
         } catch (error) {
             return res.status(400).send("Aduh eror")
         }
+        
+        res.render("utama",{
+            url : db
+        })
     },
 
     getArtikelByID: async (req, res) => {
