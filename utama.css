@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: rgb(221, 221, 221);
+  }
+
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+  }
+
+  #keluar{
+    width: 100px;
+    font-size: 15px;
+    background: #e41717;
+    color: white;
+    border: rgb(228, 29, 29) 3px solid;
+    border-radius: 5px;
+    padding: 12px 20px;
+    cursor:pointer;
+    margin-top: 10px;
+ }
+
+ #keluar a{
+  text-decoration:none;
+  color: white;
+}
+
+#keluar:hover{
+  opacity:0.8;
+}
+
+  .ar{
+    max-width: 100%;
+    background-color: rgb(242, 242, 242);
+    padding: 25px 50px 25px 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    border: 3px solid rgb(105, 105, 105);
+    border-radius: 10px;
+}
+
+#akun{
+    font-weight: 550;
+    color:rgb(1, 133, 166);
+}
+
+#judul{
+    text-align: center;
+    font-family: sans-serif;
+    text-decoration:none;
+    color: black;
+}
+
+#judul:hover{
+    color:rgb(0, 55, 158);
+}
+
+.kanan {
+  position:absolute;
+  /* max-width: 100%; */
+  background: rgba(212, 255, 209, 0.377);
+  top : 16%;
+  padding-top: 10px;
+  padding-bottom: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 77%;
+  margin-right: 5%;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: sans-serif;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.383);
+  /* width: 250px; */
+}
+
+.kanan a{
+  display: block;
+  margin: auto;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.kanan a:hover{
+  
+  color: rgb(0, 140, 248);
+}

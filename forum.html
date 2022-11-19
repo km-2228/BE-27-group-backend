@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="forum.css">
+    <title>Forum</title>
+</head>
+<body>
+    <header>
+        <a href="utama.html"><img src="ayf.png" height=100px></a>
+        <button id="keluar"><a href="index.html">Keluar</a></button>
+    </header>
+    <div class="container">
+        <div>
+            <h2>Membuat forum</h2>
+            Judul :
+            <input type="text" id="judul" placeholder="Masukkan Judul" />
+        </div>
+        <div>
+        <p>Isi forum :</p>
+        <textarea id="status"
+            rows="10"
+            cols="60"
+            placeholder="Tulis Isi forum ...">
+        </textarea>
+        <button type="submit" id="submit">Publish</button>
+        <p id="hasil" style="text-align: center;"></p>
+        </div>
+    </div>
+       <main id="main"></main>
+</body>
+<script src="forum.js"></script>
+</html>
