@@ -3,12 +3,11 @@ const router = express.Router()
 
 const {
     getAllArtikel,
-    getArtikelByID,
-    updateArtikelByID
+    getArtikelByID
 } = require("../controllers/artikel.controller")
 
+// router.get("/", halaman)
 router.get("/", getAllArtikel)
 router.get("/:id", getArtikelByID)
-router.put("/:id", updateArtikelByID)
 
 module.exports = router

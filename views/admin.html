@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index_register.css">
+    <title>project</title>
+</head>
+<body>
+  <img src="ayf.png" alt="aseanyouthforum">
+  <div class="container">
+    <p id="judul">LOGIN ADMIN</p>
+    <!-- <form action="/adminlogin" method="post"> -->
+        <input type="text" name="username" id="username-login" placeholder="Masukkan Username"/><br><br>
+        <input type="password" name="password" id="pass-login" placeholder="Masukkan Password"/>
+        <button type="submit" id="submit-login">Submit</button>
+        <main id="main"></main>
+      <p style="text-align: center;"><a id="rg" href="/login">Masuk sebagai user</a></p>
+    <!-- </form> -->
+  </div>
+</body>
+<script>
+  username = document.getElementById("username-login")
+  password = document.getElementById("pass-login")
+
+  document.getElementById("submit-login").addEventListener('click',()=>{
+      var data = {"username":username.value,"password":password.value}
+      fetch("/adminlogin", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data)
+    }).then((data) => {
+      return data.json()
+  }).then(data=>{
+    if(data.status==400){
+      let main = document.getElementById("main");
+      main.innerHTML = data.message
+    }else{
+      window.location.href = "/admin"
+    }
+  })
+  })
+</script>
+<!-- <script src="../controllers/login.controller.js"></script> -->
+</html>
