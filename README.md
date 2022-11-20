@@ -1,3 +1,7 @@
+## ERD
+
+![ERD](https://user-images.githubusercontent.com/114371403/202892582-71779c27-1b92-4066-b026-7d1c2acaa446.png)
+
 ## User
 
 ### User Collection
